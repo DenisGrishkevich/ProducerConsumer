@@ -1,0 +1,26 @@
+version: '3.6'
+
+services:
+  rabbitmq:
+    image: 'rabbitmq:3.10-management'
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+  mongodb:
+    image: mongo:5.0.8
+    ports:
+      - "27017:27017"
+  producer:
+    build: ./producer
+    depends_on:
+      - rabbitmq
+    restart: on-failure
+  consumer:
+    build: ./consumer
+    depends_on:
+      - rabbitmq
+      - mongodb
+    restart: on-failure
