@@ -1,4 +1,4 @@
-# level2practices
+# This is my first try to work with RabbitMQ and MongoDB. 
 
 # 1. Run RabbitMQ on 5672 port.
 
